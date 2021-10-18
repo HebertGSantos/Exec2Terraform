@@ -152,7 +152,7 @@ resource "null_resource" "upload_db" {
             agent    = "false"
         }
         source = "config"
-        destination = "/home/azureuser"
+        destination = "/home/testadmin"
     }
 
     depends_on = [ time_sleep.wait_30_seconds_db ]
@@ -172,8 +172,8 @@ resource "null_resource" "deploy_db" {
         inline = [
             "sudo apt-get update",
             "sudo apt-get install -y mysql-server-5.7",
-            "sudo mysql < /home/azureuser/config/user.sql",
-            "sudo cp -f /home/azureuser/config/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf",
+            "sudo mysql < /home/testadmin/config/user.sql",
+            "sudo cp -f /home/testadmin/config/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf",
             "sudo service mysql restart",
             "sleep 20",
         ]
